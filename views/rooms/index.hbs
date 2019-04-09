@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Hotels</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/rooms">Rooms</a>
+    </li>
+
+</ul>
+<div class="container" style="box-sizing: border-box;">
+    <div style="margin: 20px" class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2> <b>Rooms</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a href="/rooms/add_form" class="btn btn-success"><img style="width: 15px" src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-add-icon.png">Add New Rooms</a>
+
+            </div>
+        </div>
+    </div>
+    {{#each rooms}}
+    <div class="card" style=" float: left;
+  width: 33.33%; /* three boxes (use 25% for four, and 50% for two, etc) */
+  padding: 10px; /* if you want space between the images */">
+        <img class="card-img-top" src="{{this.image}}" style="width: 350px; height: 280px" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Room number: {{this.room_number}}</h5>
+            <p class="card-text">Floor: {{this.floor}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Belong Hotels: {{this.hotelid.name}}</li>
+            <li class="list-group-item">Single Rooms: {{this.single_rooms}}</li>
+            <li class="list-group-item">Price: {{this.price}} USD</li>
+            <li class="list-group-item">Status: {{this.status}}</li>
+            <li class="list-group-item">Detail: {{this.detail}}</li>
+        </ul>
+        <div class="card-footer">
+
+            <a href="/rooms/edit_form/{{this._id}}" class="btn btn-primary"><img style="width: 15px" src="https://cdn0.iconfinder.com/data/icons/flaturici-set-5/512/pencil-512.png">Edit</a>
+            <a href="javascript:void(0);" onclick="confirmDelete('/rooms/remove/{{this._id}}', '{{this.name}}')" class="btn btn-primary"><img style="width: 15px" src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Close-512.png">Remove</a>
+        </div>
+    </div>
+        {{/each}}
+</div>
+<script>
+    function confirmDelete(url, room_number){
+        var conf = confirm(`Phòng ${room_number}  sẽ được xóa `);
+        if(conf == true){
+            window.location.href = url;
+        }
+    }
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

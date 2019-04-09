@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Hotels</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/rooms">Rooms</a>
+    </li>
+
+</ul>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Edit  Hotels</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form role="form" method="post" action="/hotels/edit_form" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{hotels._id}}">
+                <div class="form-group">
+                    <label for="productname" class="loginFormElement">Name:</label>
+                    <input name="name" class="form-control" value="{{hotels.name}}"  type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="productprice" class="loginFormElement">City</label>
+                    <input name="city" class="form-control" type="text"  value="{{hotels.city}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="productprice" class="loginFormElement">Address</label>
+                    <input name="address" class="form-control"  value="{{hotels.address}}"   type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="productprice" class="loginFormElement">Ower</label>
+                    <input name="ower" class="form-control"  value="{{hotels.ower}}"   type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="productprice" class="loginFormElement">License Number</label>
+                    <input name="license_number" class="form-control"  value="{{hotels.license_number}}"   type="number" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                </div>
+                <div class="form-group">
+                    <label for="productprice" class="loginFormElement">Total Floor</label>
+                    <input name="total_floor" class="form-control"  value="{{hotels.total_floor}}"   type="number" required>
+                </div>
+                <div class="form-group">
+                    <div style="width: 200px">
+                        <img src="{{hotels.image}}" class="img-thumbnail">
+                    </div>
+                    <label class="control-label">Ảnh minh họa</label>
+                    <input name="image" class="filestyle" data-icon="false" type="file" required accept="image/x-png,image/gif,image/jpeg">
+                </div>
+                <div class="container">
+                    <button type="submit" id="loginSubmit" class="btn btn-success loginFormElement">Edit Hotels</button>
+                    <a href="/" class="btn btn-primary">Return</a>
+                </div></form>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
