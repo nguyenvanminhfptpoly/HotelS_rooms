@@ -9,6 +9,38 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <script>
+        function validateForm() {
+            var input = document.getElementsByTagName("input");
+            var dlsp = document.getElementsByTagName("span");
+
+            for(var i=0;i<input.length;i++) {
+                if (input[i].value == "") {
+                    dlsp[i].innerHTML = "(*) Nhập đủ dữ liệu";
+                    input[i].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[i].innerHTML = "";
+                    input[i].style.border = "1px solid green";
+                }
+                if(input[6].files.length == 0){
+                    dlsp[6].innerHTML="(*) Vui lòng chọn 1 tệp ảnh";
+                    return false
+                }else{
+                    dlsp[6].innerHTML="";
+                }
+                if(input[i].value.length<6){
+                    dlsp[i].innerHTML = "(*) Dữ liệu phải dài hơn 6 kí tự";
+                    input[i].style.border = "1px solid red";
+                    return false
+                }else {
+                    dlsp[i].innerHTML = "";
+                    input[i].style.border = "1px solid green";
+                }
+            }
+
+        }
+    </script>
 </head>
 <body>
 <ul class="nav">
@@ -29,35 +61,42 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <form role="form"  method="post" action="/hotels/add_form" enctype="multipart/form-data">
+            <form role="form"  method="post" onsubmit="return validateForm()" action="/hotels/add_form" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="validationCustom01" class="loginFormElement">Name:</label>
-                    <input name="name" id="validationCustom01"  class="form-control"  type="text" required minlength="10">
+                    <input name="name" id="validationCustom01"  class="form-control"  type="text" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">City</label>
-                    <input name="city" class="form-control" type="text" required minlength="10">
+                    <input name="city" class="form-control" type="text" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Address</label>
-                    <input name="address" class="form-control"  type="text" required minlength="10">
+                    <input name="address" class="form-control"  type="text" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Ower</label>
-                    <input name="ower" class="form-control"  type="text" required minlength="10">
+                    <input name="ower" class="form-control"  type="text" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">License Number</label>
-                    <input name="license_number" class="form-control"  type="number" required minlength="10" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    <input name="license_number" class="form-control"  type="number" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Total Floor</label>
-                    <input name="total_floor" class="form-control"  type="number" required minlength="10">
+                    <input name="total_floor" class="form-control"  type="number" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Ảnh minh họa</label>
-                    <input name="image" class="filestyle" data-icon="false" type="file" required accept="image/x-png,image/gif,image/jpeg" >
+                    <input name="image" class="filestyle" data-icon="false" type="file"  accept="image/x-png,image/gif,image/jpeg" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="container">
                     <button type="submit" id="loginSubmit" class="btn btn-success loginFormElement">Thêm sản phẩm</button>

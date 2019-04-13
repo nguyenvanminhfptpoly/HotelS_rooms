@@ -23,11 +23,11 @@ var upload = multer({storage: storage});
 router.get('/', function(req, res, next) {
 
   Hotels.find({}, (err,data)=>{
-    res.render('./hotel/index', { hotels: data });
+    res.render('./hotel/index', { hotels: data,title: 'Hotels' });
   })
 });
 router.get('/hotels/add_form', function(req, res, next) {
-  res.render('./hotel/add_form', { title: 'Express' });
+  res.render('./hotel/add_form', { title: 'Add news Hotels' });
 });
  router.post('/hotels/add_form', upload.single('image'), (req,res,next)=>{
    var modal = new Hotels();
@@ -52,7 +52,7 @@ router.get('/hotels/edit_form/:name', function(req, res, next) {
     if(err){
       res.send('ID khong ton tai');
     }
-    res.render('./hotel/edit_form', { hotels: data });
+    res.render('./hotel/edit_form', { hotels: data ,title: 'Edit Hotels'});
   })
 });
  router.post('/hotels/edit_form', upload.single('image'), (req,res,next)=>{
@@ -93,13 +93,13 @@ router.get('/rooms', function(req, res, next) {
       .populate('hotelid')
       .exec((err, data) => {
         console.log(data);
-        res.render('./rooms/index', { rooms: data });
+        res.render('./rooms/index', { rooms: data,title: 'Rooms' });
       });
 
 });
 router.get('/rooms/add_form', function(req, res, next) {
   Hotels.find({}, (err,data)=>{
-    res.render('./rooms/add_form', { hotels: data });
+    res.render('./rooms/add_form', { hotels: data,title: 'Add news Rooms' });
   })
 
 });
@@ -128,7 +128,7 @@ router.get('/rooms/edit_form/:hotelid',async function(req, res, next) {
   if(hotels == undefined || rooms == undefined){
     res.send('khong co danh muc');
   }
-  res.render('./rooms/edit_form', {hotels: hotels, rooms: rooms});
+  res.render('./rooms/edit_form', {hotels: hotels, rooms: rooms,title: 'Edit Rooms'});
 
   // Hotels.find({}, (err,data)=> {
   //   Rooms.findOne({_id: req.params.hotelid}, (err, roomsdata) => {

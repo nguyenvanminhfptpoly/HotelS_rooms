@@ -9,6 +9,31 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <script>
+        function validateForm() {
+            var input = document.getElementsByTagName("input");
+            var dlsp = document.getElementsByTagName("span");
+
+            for(var i=0;i<input.length;i++) {
+                if (input[i].value == "") {
+                    dlsp[i].innerHTML = "(*) Nhập đủ dữ liệu";
+                    input[i].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[i].innerHTML = "";
+                    input[i].style.border = "1px solid green";
+                }
+                if(input[3].files.length == 0){
+                    dlsp[3].innerHTML="(*) Vui lòng chọn 1 tệp ảnh";
+                    return false
+                }else{
+                    dlsp[3].innerHTML="";
+                }
+
+            }
+
+        }
+    </script>
 </head>
 <body>
 <ul class="nav">
@@ -29,53 +54,53 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <form role="form" method="post" action="/rooms/add_form" enctype="multipart/form-data">
+            <form role="form" name="myForm" method="post" onsubmit="return validateForm()" action="/rooms/add_form" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label class="loginFormElement">Room Number:</label>
-                    <input name="room_number" class="form-control"  type="text" required>
+                    <input name="room_number" class="form-control"  type="text"  id="rn">
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label class="loginFormElement">Floor</label>
-                    <input name="floor" class="form-control" type="text" required>
+                    <input name="floor" class="form-control" type="text" >
+                    <span style="color: red;" id="span" ></span>
                 </div>
                 <div class="form-group">
-                    <label class="loginFormElement">Hotels</label>
-                    <select name="hotelid" class="custom-select" required>
+                    <label id="hotels">Hotels</label>
+                    <select name="hotelid"  class="custom-select" >
                         {{#each hotels}}
-                        <option value="{{this._id}}">{{this.name}}</option>
+                        <option value="{{this._id}}" selected >{{this.name}}</option>
                         {{/each}}
                     </select>
                 </div>
                 <div class="form-group">
-                    <label  class="loginFormElement">Single Rooms</label>
-                    <select name="single_rooms" class="custom-select" required>
+                    <label  id="single_rooms">Single Rooms</label>
 
-                        <option value="True" >True</option>
+                    <select name="single_rooms" class="custom-select" >
+                        <option value="True" selected>True</option>
                         <option value="False" >False</option>
-
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Price</label>
-                    <input name="price" class="form-control"  type="number" required>
+                    <input name="price" class="form-control"  type="number" >
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
-                    <label for="productprice" class="loginFormElement">Status</label>
-                    <select name="status" class="custom-select" required>
+                    <label for="productprice" id="status" class="loginFormElement">Status</label>
 
-                        <option value="1">Đang Trống</option>
-                        <option value="2">Đã Đặt</option>
-                        <option value="3">Không Sử dụng</option>
-                    </select>
+                    {{{check_room_status }}}
                 </div>
                 <div class="form-group">
                     <label class="control-label">Image</label>
-                    <input name="image" class="filestyle" data-icon="false" type="file" accept="image/x-png,image/gif,image/jpeg" required>
+                    <input name="image"  class="filestyle" id="image_upload" data-icon="false" type="file" accept="image/x-png,image/gif,image/jpeg" >
+                    <span style="color: red;" id="span_image"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Detail</label>
-                    <input name="detail" class="form-control"  type="text" required >
+                    <input name="detail" class="form-control"  type="text" ></input>
+                    <span style="color: red;" id="span"></span>
                 </div>
                 <div class="container">
                     <button type="submit" id="loginSubmit" class="btn btn-success loginFormElement">Add Rooms</button>
