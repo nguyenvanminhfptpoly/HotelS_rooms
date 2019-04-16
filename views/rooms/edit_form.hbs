@@ -15,7 +15,7 @@
             var input = document.getElementsByTagName("input");
             var dlsp = document.getElementsByTagName("span");
 
-            for(var i=0;i<input.length;i++) {
+            for (var i = 0; i < input.length; i++) {
                 if (input[i].value == "") {
                     dlsp[i].innerHTML = "(*) Nhập đủ dữ liệu";
                     input[i].style.border = "1px solid red";
@@ -24,11 +24,11 @@
                     dlsp[i].innerHTML = "";
                     input[i].style.border = "1px solid green";
                 }
-                if(input[4].files.length == 0){
-                    dlsp[3].innerHTML="(*) Vui lòng chọn 1 tệp ảnh";
+                if (input[4].files.length == 0) {
+                    dlsp[3].innerHTML = "(*) Vui lòng chọn 1 tệp ảnh";
                     return false
-                }else{
-                    dlsp[3].innerHTML="";
+                } else {
+                    dlsp[3].innerHTML = "";
                 }
 
             }
@@ -55,17 +55,18 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <form role="form" method="post" onsubmit="return validateForm()"  action="/rooms/edit_form" enctype="multipart/form-data">
+            <form role="form" method="post" onsubmit="return validateForm()" action="/rooms/edit_form"
+                  enctype="multipart/form-data">
                 <input type="hidden" name="id" value="{{rooms._id}}">
                 <div class="form-group">
                     <label for="productname" class="loginFormElement">Room Number:</label>
                     <span style="color: red;" id="span"></span>
-                    <input name="room_number" value="{{rooms.room_number}}" class="form-control" type="text" >
+                    <input name="room_number" value="{{rooms.room_number}}" class="form-control" type="text">
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Floor</label>
                     <span style="color: red;" id="span"></span>
-                    <input name="floor" class="form-control" value="{{rooms.floor}}" type="text" >
+                    <input name="floor" class="form-control" value="{{rooms.floor}}" type="text">
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Hotels</label>
@@ -83,29 +84,24 @@
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Single Room</label>
                     <select name="single_rooms" required class="custom-select">
-                        {{#each rooms}}
-                            <option value="{{this.single_rooms}}"
-                                {{#if selected}}
-                                    selected
-                                {{/if}}>{{this.single_rooms}}</option>
-                        {{/each}}
-
+                        <option value="{{roons.single_rooms}}"
+                            {{#if selected}}
+                                selected
+                            {{/if}}>{{rooms.single_rooms}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Price</label>
                     <span style="color: red;" id="span"></span>
-                    <input name="price" class="form-control" value="{{rooms.price}}" type="number" >
+                    <input name="price" class="form-control" value="{{rooms.price}}" type="number">
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Stutus</label>
-                    <select name="status" value="{{rooms.status}}" class="custom-select" required>
-                        {{#each rooms}}
-                            <option  value="{{rooms.status}}"
-                                {{#if selected}}
-                                    selected
-                            {{/if}}>{{this.status}}</option>
-                        {{/each}}
+                    <select name="status" class="custom-select" required>
+                        <option value="{{rooms.status}}"
+                            {{#if selected}}
+                                selected
+                            {{/if}}>{{rooms.status}}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -113,13 +109,14 @@
                         <img src="{{rooms.image}}" class="img-thumbnail">
                     </div>
                     <label class="control-label">Image</label>
-                    <input name="image" id="image_upload" class="filestyle" data-icon="false" type="file"  accept="image/x-png,image/gif,image/jpeg" >
+                    <input name="image" id="image_upload" class="filestyle" data-icon="false" type="file"
+                           accept="image/x-png,image/gif,image/jpeg">
                     <span style="color: red;" id="span"></span>
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Detail</label>
                     <span style="color: red;" id="span"></span>
-                    <input name="detail" value="{{rooms.detail}}" class="form-control" type="text" >
+                    <textarea name="detail"  class="form-control" type="text">{{rooms.detail}}</textarea>
                 </div>
                 <div class="container">
                     <button type="submit" id="loginSubmit" class="btn btn-success loginFormElement">Edit Rooms</button>
