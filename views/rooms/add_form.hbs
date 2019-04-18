@@ -13,15 +13,48 @@
         function validateForm() {
             var input = document.getElementsByTagName("input");
             var dlsp = document.getElementsByTagName("span");
+            var textarea = document.getElementsByTagName("textarea");
 
             for(var i=0;i<input.length;i++) {
-                if (input[i].value == "") {
-                    dlsp[i].innerHTML = "(*) Nhập đủ dữ liệu";
+                if (input[i].value.charAt(0) == " ") {
+                    dlsp[i].innerHTML = "(*) Dữ Liệu không hợp lệ";
                     input[i].style.border = "1px solid red";
                     return false
                 } else {
                     dlsp[i].innerHTML = "";
                     input[i].style.border = "1px solid green";
+                }
+                if (input[0].value == "") {
+                    dlsp[0].innerHTML = "(*) Nhập đủ dữ liệu";
+                    input[0].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[0].innerHTML = "";
+                    input[0].style.border = "1px solid green";
+                }
+                if (input[2].value == "") {
+                    dlsp[2].innerHTML = "(*) Nhập đủ dữ liệu";
+                    input[2].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[2].innerHTML = "";
+                    input[2].style.border = "1px solid green";
+                }
+                if (input[1].value == "") {
+                    dlsp[1].innerHTML = "(*) Nhập đủ dữ liệu";
+                    input[1].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[1].innerHTML = "";
+                    input[1].style.border = "1px solid green";
+                }
+                if (100 <input[1].value.length < 0 ) {
+                    dlsp[1].innerHTML = "(*) Số tầng không hợp lệ";
+                    input[1].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[1].innerHTML = "";
+                    input[1].style.border = "1px solid green";
                 }
                 if(input[3].files.length == 0){
                     dlsp[3].innerHTML="(*) Vui lòng chọn 1 tệp ảnh";
@@ -30,6 +63,16 @@
                     dlsp[3].innerHTML="";
                 }
 
+            }
+            for(var i=0; i< textarea.length;i++){
+                if (textarea[i].value  == "") {
+                    dlsp[4].innerHTML = "(*) Nhập đủ dữ liệu";
+                    textarea[i].style.border = "1px solid red";
+                    return false
+                } else {
+                    dlsp[4].innerHTML = "";
+                    textarea[i].style.border = "1px solid green";
+                }
             }
 
         }
@@ -63,7 +106,7 @@
                 </div>
                 <div class="form-group">
                     <label class="loginFormElement">Floor</label>
-                    <input name="floor" class="form-control" type="text" >
+                    <input name="floor" class="form-control" type="number" >
                     <span style="color: red;" id="span" ></span>
                 </div>
                 <div class="form-group">
@@ -99,7 +142,7 @@
                 </div>
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Detail</label>
-                    <input name="detail" class="form-control"  type="text" ></input>
+                    <textarea name="detail" class="form-control"  type="text" ></textarea>
                     <span style="color: red;" id="span"></span>
                 </div>
                 <div class="container">
